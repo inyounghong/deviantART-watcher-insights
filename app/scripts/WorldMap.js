@@ -1,6 +1,7 @@
 import d3 from 'd3'
 import * as constants from './constants';
 import Datamap from 'datamaps';
+import { scaleLinear } from 'd3-request';
 
 export default class WorldMap {
 

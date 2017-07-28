@@ -1,0 +1,21 @@
+#ageChart {
+}
+
+.bar-chart {
+    border: 1px solid #ddd;
+
+    .tick line, .domain {
+        display: none;
+    }
+
+}
+
+svg {
+    width: 100%;
+}
+
+.axis path,.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}

@@ -6,7 +6,7 @@ import PieChart from './PieChart';
 import $ from 'jquery';
 import _ from 'lodash';
 import c3 from 'c3';
-import d3 from 'd3';
+import { json } from 'd3-request';
 import { queue } from 'd3-queue';
 
 export default class Visualization {

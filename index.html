@@ -1,24 +1,38 @@
-<!doctype html>
 <html>
-  <head>
-    <!-- 
-    Add charset utf-8 encoding for d3
-    Source: http://stackoverflow.com/questions/15237073/d3-js-uncaught-syntaxerror-unexpected-token-illegal
-     -->
-    <meta charset="utf-8">
-    <title>D3/Webpack/ES6 Starterkit</title>
-    <link href="static/styles.css" rel="stylesheet" text="style/css" />
-  </head>
-  <body>
-  	<div class="wrapper">
-  		<h1>Stats hoi</h1>
-  		<div id="linechart"></div>
-      <div class="piechart-container">
-    		<div id="piechart-1"></div>
-        <div id="piechart-2"></div>
-        <div id="piechart-3"></div>
-      </div>
-  	</div>
-    <script src="/static/bundle.js"></script>
-  </body>
+    <head>
+        <link href="static/styles.css" rel="stylesheet" text="style/css" />
+        <title>DeviantART Watchers</title>
+    </head>
+    <body>
+        <p>Getting watchers for <span id="username"></span>.</p>
+        <p>You have <span id="numWatchers"></span> watchers.</p>
+
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <div id="age-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="ageChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ageBar"></div>
+        <div id="typePie"></div>
+        <div id="artistLevelPie"></div>
+        <div id="artistSpecialityPie"></div>
+        <div id="sexPie"></div>
+        <div id="countryPie"></div>
+        <!-- <div id="timezonePie"></div> -->
+
+        <!-- <script src="scripts/main.js"></script> -->
+        <script src="/static/bundle.js"></script>
+    </body>
 </html>
