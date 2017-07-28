@@ -1,59 +1,58 @@
+import c3 from 'c3';
 import d3 from 'd3'
-import dataset from '../datasets/piechart-testdata.json'
+import * as constants from './constants';
 
 export default class PieChart {
-	constructor (container) {
-		this.container = container
 
-		this.initDimensions()
-		this.initColors()
-		this.initGraph()
+	constructor (category, watcherData) {
+        const data = this.processData(watcherData, category);
+        this.drawPie(category, data);
 
-	}
+        console.log("unknown " + category + ": " + this.unknownCount);
+    }
 
-	initGraph () {
-		this.arc = d3.svg.arc()
-		    .outerRadius(this.radius - 10)
-		    .innerRadius(0)
-		    .bind(this)
+    drawPie(category, data) {
+        var chart = c3.generate({
+            bindto: "#" + category + "Pie",
+            data: {
+                columns: data,
+                type : 'pie',
+            }
+        });
+    }
 
-		this.pie = d3.layout.pie()
-		    .sort(null)
-		    .value(function(d) { 
-		    	return d.population 
-		    })
+    processData(watcherData, category) {
 
-		this.svg = d3.select(this.container).append('svg')
-		    .attr('width', '100%')
-		    .attr('height', '100%')
-		    .attr('viewBox','0 0 '+Math.min(this.width, this.height)+' '+Math.min(this.width, this.height))
-		    .attr('perserveAspectRatio', 'xMinYMid')
+        var count = 0;
+        var data = [];
+        var getIndex = this.getIndex;
 
-		this.group = this.svg.append('g')
-			.attr('transform', 'translate(' + this.width / 2 + ',' + this.height / 2 + ')');
+        // Loop through watcher data
+        watcherData.forEach(function(watcher) {
 
-		this.pieces = this.group.selectAll('.arc')
-			.data( this.pie(dataset) )
-			.enter().append('g')
-				.attr('class', 'arc')
+            if (watcher[category] == null) {
+                count++;
+            } else {
+                var index = getIndex(watcher[category], data);
+                if (index > -1) {
+                    data[index][1]++;
+                } else {
+                    data.push([watcher[category], 1]);
+                }
+            }
+        });
 
-		this.pieces.append('path')
-			.attr('d', this.arc)
+        this.unknownCount = count;
+        return data;
+    }
 
-		this.pieces.style('fill', function(d) { 
-				return this.colors(d.data.age)
-			}.bind(this))
-	}
-
-	initDimensions () {
-		this.width = parseInt(d3.select(this.container).style('width'))
-		this.height = this.width
-		this.radius = Math.min(this.width, this.height) / 2
-	}
-
-	initColors () {
-		this.colors = d3.scale.ordinal()
-			.range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#d0743c', '#ff8c00'])
-	}
+    getIndex(category, data) {
+        for (var i = 0; i < data.length; i++) { // data[i] = [category, count]
+            if (data[i][0] == category) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }

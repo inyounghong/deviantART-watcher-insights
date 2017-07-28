@@ -1,16 +1,14 @@
+@import 'vendor/bootstrap';
 @import '_variables';
 @import 'test';
+
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
 
 $orange: #ffd060;
 $pink: #fb6090;
 
-* {
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0;
+body {
     font-family: Montserrat;
     font-size: 12px;
 }
