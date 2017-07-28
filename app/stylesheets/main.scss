@@ -1,0 +1,41 @@
+@import '_variables';
+@import 'test';
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
+
+$orange: #ffd060;
+$pink: #fb6090;
+
+* {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+    font-size: 12px;
+}
+
+/* Map */
+
+#map-container {
+    background: $orange;
+    text-align: center;
+}
+
+#map {
+    width: 1000px;
+    height: 600px;
+    position: relative;
+    display: inline-block;
+}
+
+// * {
+//     background: red;
+//     color: black;
+// }
+
+.hover-info {
+    background: #FFF;
+    color: $pink;
+    padding: 10px 20px;
+}
